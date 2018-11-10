@@ -4,7 +4,7 @@ public class Ballot {
 	public int voter_index = 0;//or voter index
 	private int candidates_num = 0;
 	private String[] candidates; 
-	private int[] vote;
+	private int[] vote;         //vote[i]: rank of candidate #i
 	public Ballot(String type, int voter_index,int candidatenum,String[] candidates_in,int[] vote)
 	{
 		Ballot_type = "";//IS or OPL, means instant run-off or open party list
@@ -40,7 +40,6 @@ public class Ballot {
 			return true;
 		}
 		else return false;
-		
 	}
 	
 	public int get_candidatesnum() {return candidates_num;}
@@ -63,12 +62,25 @@ public class Ballot {
 		}
 		return true;
 	}
-	public int get_vote(int index)
+	public int get_rank_from_cand(int index)
 	{
-		if(index>=0&&index<candidates_num)
-			return vote[index];
-		return -1;
+		if(index>=0&&index<candidates_num) {
+            if (vote[index] == 0) return -1;
+            return vote[index];
+        }
+        return -1;
 	}
+
+	public int get_cand_from_rank(int rank)
+    {
+        if(rank==0)
+            return -1;
+        for(int i=0;i<candidates_num;i++)
+            if(vote[i]==rank)
+                return i;
+        return -1;
+    }
+
 	public String get_candidate(int index)
 	{
 		if(index>=0&&index<candidates_num)

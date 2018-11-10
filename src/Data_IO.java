@@ -67,13 +67,14 @@ public class Data_IO {
 					
 					for(int i=0;i<candidatenum;i++)
 					{
-						System.out.print(data[voter_index].get_vote(i)+"__");
+						System.out.print(data[voter_index].get_rank_from_cand(i)+"__");
 					}
 					System.out.print("\n");
 					voter_index++;
 					
 					break;
 				}
+				ballot_num=voter_index;
 			}
 			return true;
 		}
