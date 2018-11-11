@@ -14,19 +14,7 @@ public class main {
         if(D_IO.load_data()==false)
             System.out.print("Load data fail\n");
 
-        Voting VO=new Voting();
-        VO.InitVoting(D_IO);
-
-        if(VO.VoteType.equals("IR"))
-        {
-            String winner;
-            winner = VO.IR_Voting();
-            System.out.println(winner);
-        }
-        if(VO.VoteType.equals("OPL"))
-        {
-            int numofseats=9;       //TODO: add numofseats in Data_IO.java
-            int[] OPLans=VO.OPL_Voting(numofseats);
-        }
+        Voting_System VO=new Voting_System();
+        boolean voting_res = VO.process_voting(D_IO);
     }
 }
