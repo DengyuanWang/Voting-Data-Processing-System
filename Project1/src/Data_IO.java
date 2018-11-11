@@ -41,7 +41,7 @@ public class Data_IO {
 					type = st;
 					break;
 				case 2://candidates num
-					candidatenum = Integer.parseInt(st);	
+					candidatenum = Integer.parseInt(st);
 					break;
 				case 3://candidates name
 					candidates_in = st.split(",");
@@ -53,14 +53,17 @@ public class Data_IO {
 					break;
 				case 5://maybe vote ballots or seats
 					if(!new String("IR").equals(type))//OPL
-					{	
+					{
 						vote_num = Integer.parseInt(st);
 						break;
 					}//continue for IR
 				default://vote ballots
 					String[] tmpst = st.split(",");
 					if(data == null)
+					{
 						data = new Ballot[vote_num];
+						ballot_num = vote_num;
+					}
 					if(vote == null)
 						vote = new int[candidatenum];
 					for(int i=0;i<candidatenum;i++)

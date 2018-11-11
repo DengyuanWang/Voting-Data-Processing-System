@@ -60,7 +60,8 @@ public class Status_Controller {
 			System.out.print("please log in\n");
 			return false;
 		}
-		return false;
+		boolean voting_res = Voting_sys.process_voting(Data_IO_);
+		return voting_res;
 	}
 	public boolean DisplayData()
 	{

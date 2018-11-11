@@ -11,10 +11,14 @@ public class Voting_System {
         numofballot = Ballotdata.ballot_num;
         numofcand = Ballotdata.data[0].get_candidatesnum();
 
+        System.out.println(numofballot);
+        System.out.println(numofcand);
+
         if(VoteType.equals("IR"))
         {
             String winner;
             winner = IR_Voting();
+            System.out.println(winner);
         }
         if(VoteType.equals("OPL"))
         {
