@@ -20,6 +20,9 @@ public class Tester_main {
 		Status_Controller SC = new Status_Controller();
 		SC.Log_in();
 		SC.LoadData("./test.csv");
+
+		Voting_System VO=new Voting_System();
+		boolean voting_res = VO.process_voting(SC.Data_IO_);
 	}
 
 }
