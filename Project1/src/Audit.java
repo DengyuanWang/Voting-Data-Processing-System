@@ -8,5 +8,6 @@ public class Audit {
 	public int[] Candidates_vote;
 	public int Winner;//index of winner
 	//public Process
-	public frames[] Votingprocess;
+	public OPL_frame[] OPLVotingprocess;
+	public IR_frame[] IRVotingprocess;
 }
