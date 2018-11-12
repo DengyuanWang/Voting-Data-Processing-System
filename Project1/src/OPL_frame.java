@@ -1,5 +1,5 @@
 
-public class Audit {
+public class OPL_frame {
 	public String Type_of_Voting;//IR or OPL
 	public int Number_of_Candidates;
 	public String[] Candidates;
@@ -8,5 +8,4 @@ public class Audit {
 	public int[] Candidates_vote;
 	public int Winner;//index of winner
 	//public Process
-	public frames[] Votingprocess;
 }
