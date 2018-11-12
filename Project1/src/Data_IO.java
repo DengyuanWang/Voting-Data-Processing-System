@@ -1,6 +1,9 @@
 import java.io.*;
 
-public class Data_IO {
+public class Data_IO implements Serializable {
+	//default serialVersion id
+	private static final long serialVersionUID = 1L;
+
 	public String Path_in = "";//input file path
 	public String Path_out = "";//output file path
 	public boolean Error_tag;//true for any error occur
@@ -90,10 +93,38 @@ public class Data_IO {
 			return true;
 		}
 	}
-	public boolean save_data()
+	public boolean save_result(Object serObj)
 	{
-		return false;
+		if(Path_out=="") return false;
+		try {
+			String fileName = Path_out + "audit.txt"; 
+			String str = "Hello";
+		    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+		    writer.write(str);
+		     
+		    writer.close();
+		}
+		catch (Exception ex) {
+				ex.printStackTrace();
+		}
+		return true;
 	}
+	public boolean save_result(Object serObj,String path)
+	{
+		String fileName = path + "audit.txt"; 
+		try {
+			String str = "Hello";
+		    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+		    writer.write(str);
+		     
+		    writer.close();
+		}
+		catch (Exception ex) {
+				ex.printStackTrace();
+		}
+		return true;
+	}
+
 	public boolean specify_path_in(String path)
 	{
 		if(new String(".csv").equals(path.substring(path.length()-4)) )
