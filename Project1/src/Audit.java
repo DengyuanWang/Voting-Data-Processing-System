@@ -9,4 +9,5 @@ public class Audit {
 	public int Winner;//index of winner
 	//public Process
 	public frames[] Votingprocess;
+	
 }

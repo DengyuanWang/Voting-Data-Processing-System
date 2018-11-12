@@ -21,6 +21,7 @@ public class Tester_main {
 		SC.Log_in();
 		SC.LoadData("./testOPL.csv");
 		boolean ans=SC.ProcessData();
+		SC.SaveData();
 	}
 
 }
