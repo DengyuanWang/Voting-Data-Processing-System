@@ -19,7 +19,7 @@ public class Tester_main {
 		*/
 		Status_Controller SC = new Status_Controller();
 		SC.Log_in();
-		SC.LoadData("./test.csv");
+		SC.LoadData("./testOPL.csv");
 		boolean ans=SC.ProcessData();
 	}
 
