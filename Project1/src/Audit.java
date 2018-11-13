@@ -1,4 +1,4 @@
-
+import java.util.*;
 public class Audit {
 	public String Type_of_Voting;//IR or OPL
 	public int Number_of_Candidates;
@@ -66,7 +66,36 @@ public class Audit {
 			}
 			
 		}else if(new String("OPL").equals(Type_of_Voting)){
-			
+			int frame_index=0;
+			List<String> parties = new ArrayList<String>();
+			while(true) {
+				if(frame_index==0)//first frame
+				{
+					audit_txt = "PartyName: ";
+					
+					for(String party: OPLVotingprocess[frame_index].PartySeats.keySet())
+					{
+						parties.add(party );
+						audit_txt += party+" ";
+					}
+					audit_txt += "\n";
+				}
+				if(!OPLVotingprocess[frame_index].partyFinish)//
+				{
+					audit_txt += "Votes num:";
+					for(int i=0;i<parties.size();i++)
+						audit_txt += Integer.toString(OPLVotingprocess[frame_index].PartyVotes.get(parties.get(i)))+" ";
+					audit_txt += "\nSeats num:";
+					for(int i=0;i<parties.size();i++)
+						audit_txt += Integer.toString(OPLVotingprocess[frame_index].PartySeats.get(parties.get(i)))+" ";
+					audit_txt += "\n";
+				}
+				else
+				{
+					break;
+				}
+				frame_index++;
+			}
 		}
 		return false;
 	}

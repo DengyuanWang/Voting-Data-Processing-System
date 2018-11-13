@@ -93,12 +93,12 @@ public class Data_IO implements Serializable {
 			return true;
 		}
 	}
-	public boolean save_result(Object serObj)
+	public boolean save_result(String content)
 	{
 		if(Path_out=="") return false;
 		try {
 			String fileName = Path_out + "audit.txt"; 
-			String str = "Hello";
+			String str = content;
 		    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 		    writer.write(str);
 		     
@@ -109,11 +109,11 @@ public class Data_IO implements Serializable {
 		}
 		return true;
 	}
-	public boolean save_result(Object serObj,String path)
+	public boolean save_result(String content,String path)
 	{
 		String fileName = path + "audit.txt"; 
 		try {
-			String str = "Hello";
+			String str = content;
 		    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 		    writer.write(str);
 		     
