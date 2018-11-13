@@ -140,6 +140,7 @@ public class Voting_System {
         System.out.println(undecidedseat);
         auditfile.OPLVotingprocess=new OPL_frame[3];
         auditfile.OPLVotingprocess[0]=new OPL_frame();
+        auditfile.OPLVotingprocess[0].PartyVotes=OPLpartyvote;
         auditfile.OPLVotingprocess[0].partyFinish=false;
         auditfile.OPLVotingprocess[0].PartySeats=OPLpartyres;
 
@@ -167,7 +168,7 @@ public class Voting_System {
                 }
             }
             OPLpartyres.put(tmppty, OPLpartyres.get(tmppty) + 1);
-            OPLpartyremain.put(tmppty, OPLpartyremain.get(tmppty)-1);
+            //OPLpartyremain.put(tmppty, OPLpartyremain.get(tmppty)-1);
 
             /*
             for(int i=0;i<numofcand;i++)
@@ -191,6 +192,7 @@ public class Voting_System {
 
         auditfile.OPLVotingprocess[1]=new OPL_frame();
         auditfile.OPLVotingprocess[1].partyFinish=false;
+        auditfile.OPLVotingprocess[1].PartyVotes=OPLpartyremain;
         auditfile.OPLVotingprocess[1].PartySeats=OPLpartyres;
 
         for(String party: OPLpartyvote.keySet())
