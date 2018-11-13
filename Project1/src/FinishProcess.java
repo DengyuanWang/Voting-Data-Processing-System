@@ -62,6 +62,10 @@ public class FinishProcess extends javax.swing.JFrame{
 		mediaButton.setBounds(400, 175 , 100 , 25);
         panel.add(mediaButton);
 
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(500,175,100,25);
+        panel.add(backButton);
+
         ActionListener auditButtonListener = new auditButtonListener();
         auditButton.addActionListener(auditButtonListener);
 
@@ -70,6 +74,9 @@ public class FinishProcess extends javax.swing.JFrame{
 
         ActionListener mediaButtonListener = new mediaButtonListener();
         mediaButton.addActionListener(mediaButtonListener);
+
+        ActionListener backButtonListener = new backButtonListener();
+        backButton.addActionListener(backButtonListener);
     }
     
     public class auditButtonListener extends javax.swing.JFrame implements ActionListener {
@@ -101,6 +108,14 @@ public class FinishProcess extends javax.swing.JFrame{
         @Override
         public void actionPerformed(ActionEvent e) {
             //JOptionPane.showMessageDialog(null, "success");
+        }
+    }
+
+    public class backButtonListener extends javax.swing.JFrame implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            LoadFile back = new LoadFile();
+            frame.setVisible(false);
         }
     }
 }
