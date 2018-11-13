@@ -130,6 +130,10 @@ public class Data_IO implements Serializable {
 
 	public boolean specify_path_in(String path)
 	{
+		if(path.length()<4) 
+		{
+			System.out.print("wrong path input\n");
+			return false;}
 		if(new String(".csv").equals(path.substring(path.length()-4)) )
 		{
 			Path_in = path;

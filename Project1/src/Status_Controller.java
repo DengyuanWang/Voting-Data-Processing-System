@@ -52,6 +52,7 @@ public class Status_Controller {
 		if(Data_IO_.specify_path_in(path_in)==false)
 		{
 			System.out.print("Specify path fail\n");
+			return false;
 		}
 		
 		if(Data_IO_.load_data()==false)
@@ -61,9 +62,14 @@ public class Status_Controller {
 	}
 	public boolean ProcessData()
 	{
-		if(Login_status==false||Data_load_tag==false)
+		if(Login_status==false)
 		{
 			System.out.print("please log in\n");
+			return false;
+		}
+		if(Data_load_tag==false)
+		{
+			System.out.print("please Load Data\n");
 			return false;
 		}
 		boolean voting_res = Voting_sys.process_voting(Data_IO_);
