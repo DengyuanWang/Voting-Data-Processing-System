@@ -51,22 +51,24 @@ public class Status_Controller {
 		
 		if(Data_IO_.load_data()==false)
 			System.out.print("Load data fail\n");
-		return false;
+		Data_load_tag = true;
+		return true;
 	}
 	public boolean ProcessData()
 	{
-		if(Login_status==false)
+		if(Login_status==false||Data_load_tag==false)
 		{
 			System.out.print("please log in\n");
 			return false;
 		}
 		boolean voting_res = Voting_sys.process_voting(Data_IO_);
 		Audit=Voting_sys.auditfile;
+		Process_finish = voting_res;
 		return voting_res;
 	}
 	public boolean DisplayData()
 	{
-		if(Login_status==false)
+		if(Login_status==false||Process_finish==false)
 		{
 			System.out.print("please log in\n");
 			return false;
@@ -75,7 +77,7 @@ public class Status_Controller {
 	}
 	public boolean SaveData()
 	{
-		if(Login_status==false)
+		if(Login_status==false||Process_finish==false)
 		{
 			System.out.print("please log in\n");
 			return false;
