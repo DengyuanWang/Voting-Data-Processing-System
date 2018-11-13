@@ -111,7 +111,10 @@ public class Data_IO implements Serializable {
 	}
 	public boolean save_result(String content,String path)
 	{
-		String fileName = path + "audit.txt"; 
+		String fileName;
+		if(path=="")
+			fileName = "./" + "audit.txt"; 
+		else fileName =  path;
 		try {
 			String str = content;
 		    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));

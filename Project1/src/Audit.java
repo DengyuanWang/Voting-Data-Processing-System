@@ -92,6 +92,17 @@ public class Audit {
 				}
 				else
 				{
+					audit_txt += "CandidateWinSeatsName: ";
+					List<String> candiWseats = new ArrayList<String>();
+					for(String candi: OPLVotingprocess[frame_index].CandSeats.keySet())
+					{
+						candiWseats.add(candi );
+						audit_txt += candi+" ";
+					}
+					audit_txt += "\nParty name of them:";
+					for(int i=0;i<candiWseats.size();i++)
+						audit_txt += OPLVotingprocess[frame_index].CandParty.get(candiWseats.get(i))+" ";
+					audit_txt += "\n";
 					break;
 				}
 				frame_index++;

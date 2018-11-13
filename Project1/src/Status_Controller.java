@@ -82,7 +82,18 @@ public class Status_Controller {
 			return false;
 		}
 		Audit.display();
-		Data_IO_.save_result(Audit.audit_txt, "./");
+		Data_IO_.save_result(Audit.audit_txt, "");
+		return false;
+	}
+	public boolean SaveData(String name)
+	{
+		if(Login_status==false||Process_finish==false)
+		{
+			System.out.print("please log in\n");
+			return false;
+		}
+		Audit.display();
+		Data_IO_.save_result(Audit.audit_txt, "./"+name);
 		return false;
 	}
 	public boolean Sign_out()

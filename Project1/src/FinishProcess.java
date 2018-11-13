@@ -91,7 +91,7 @@ public class FinishProcess extends javax.swing.JFrame{
             // catch (Exception e){
             //     e.printStackTrace();
             // }
-            
+            Global.SC.SaveData();
             // TextArea.setText
         }
     }
@@ -108,6 +108,7 @@ public class FinishProcess extends javax.swing.JFrame{
         @Override
         public void actionPerformed(ActionEvent e) {
             //JOptionPane.showMessageDialog(null, "success");
+        	Global.SC.SaveData("media.txt");
         }
     }
 
