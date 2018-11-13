@@ -71,7 +71,8 @@ public class LoadFile extends javax.swing.JFrame {
             
             try{
                 of.PickMe();
-                String path = "./testOPL.csv";
+                //String path = "./testOPL.csv";
+                String path = of.s;
                 Global.SC.LoadData(path);
             }
             catch (Exception e){
