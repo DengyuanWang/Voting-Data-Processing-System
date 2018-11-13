@@ -72,7 +72,7 @@ public class Status_Controller {
 			System.out.print("please log in\n");
 			return false;
 		}
-		return false;
+		return  Audit.display();
 	}
 	public boolean SaveData()
 	{

@@ -43,7 +43,9 @@ public class ScreenView {
         JTextArea jta = new JTextArea();
         jta.setSize(400,400);
         jta.setLocation(10,40);
-        jta.setText("test success");
+        Global.SC.DisplayData();
+        String test = Global.SC.Audit.audit_txt;
+        jta.setText(test);
         panel.add(jta);
     }
 }
