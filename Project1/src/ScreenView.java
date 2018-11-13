@@ -15,11 +15,11 @@ import javax.swing.SwingConstants;
 
 
 
-public class ScreenView {
+public class ScreenView extends javax.swing.JFrame {
 
     public JFrame frame = new JFrame("Voting System");
 	ScreenView() {
-		frame.setSize(420, 300);
+		frame.setSize(430, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -29,7 +29,7 @@ public class ScreenView {
 		frame.setVisible(true);
 	}
 
-	private static void placeComponents(JPanel panel) {
+	private void placeComponents(JPanel panel) {
 
         panel.setLayout(null);
         
@@ -41,9 +41,24 @@ public class ScreenView {
         // panel.addSeparator();
 
         JTextArea jta = new JTextArea();
-        jta.setSize(400,400);
+        jta.setSize(400,300);
         jta.setLocation(10,40);
-        jta.setText("test success");
+        jta.setText("ha");
         panel.add(jta);
+
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(200,355,100,25);
+        panel.add(backButton);
+
+        ActionListener backButtonListener = new backButtonListener();
+        backButton.addActionListener(backButtonListener);
+    }
+
+    public class backButtonListener extends javax.swing.JFrame implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            FinishProcess back = new FinishProcess();
+            frame.setVisible(false);
+        }
     }
 }
