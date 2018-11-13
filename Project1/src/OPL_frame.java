@@ -13,4 +13,5 @@ public class OPL_frame extends frames{
 													//frames[1]: remain votes
 	public HashMap<String, Integer> PartySeats;		//key=party, val=num of seats
 	public HashMap<String, Integer> CandSeats;		//key=name, val=rank in its party
+	public HashMap<String, String> CandParty;		//key=name, val=its party
 }

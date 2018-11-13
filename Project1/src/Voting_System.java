@@ -117,6 +117,7 @@ public class Voting_System {
         int[] OPLvote=new int[numofcand];       //votes
         //int[] OPLremain=new int[numofcand];     //remaining votes
         HashMap<String,Integer> OPLcandres=new HashMap<>();
+        HashMap<String, String> OPLcandparty=new HashMap<>();
         HashMap<String, Integer> OPLpartyvote=new HashMap<>();
         HashMap<String, Integer> OPLpartyres=new HashMap<>();
         HashMap<String, Integer> OPLpartyremain=new HashMap<>();
@@ -231,6 +232,7 @@ public class Voting_System {
                 System.out.print(i+1);
                 System.out.println("");
                 OPLcandres.put(Ballotdata.data[0].get_candidate(idx),i+1);
+                OPLcandparty.put(Ballotdata.data[0].get_candidate(idx), Ballotdata.data[0].get_party(idx));
             }
         }
 
@@ -238,6 +240,7 @@ public class Voting_System {
         auditfile.OPLVotingprocess[2].partyFinish=true;
         auditfile.OPLVotingprocess[2].PartySeats=OPLpartyres;
         auditfile.OPLVotingprocess[2].CandSeats=OPLcandres;
+        auditfile.OPLVotingprocess[2].CandParty=OPLcandparty;
 
         System.out.println(auditfile.OPLVotingprocess[0].PartySeats);
         System.out.println(auditfile.OPLVotingprocess[1].PartySeats);
