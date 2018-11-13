@@ -6,7 +6,7 @@ public class Voting_System {
     public String VoteType;
     public int numofballot;
     public int numofcand;
-    public Audit auditfile=new Audit();
+    public Audit auditfile;
 
     public static TreeMap<Integer, Integer> sortMapByValue(HashMap<Integer, Integer> map){
         Comparator<Integer> comparator = new ValueComparator(map);
@@ -19,6 +19,7 @@ public class Voting_System {
 
     public boolean process_voting(Data_IO _data)
     {
+    	auditfile= new Audit(_data);
         Ballotdata=_data;
         VoteType = Ballotdata.data[0].Ballot_type;
         numofballot = Ballotdata.ballot_num;

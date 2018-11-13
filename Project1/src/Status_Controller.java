@@ -29,7 +29,6 @@ public class Status_Controller {
 		Interface_status = "";
 		File_SavePath = "";
 		Process_finish = false;
-		Audit = new Audit();
 		Data_IO_ = new Data_IO();
 	}
 	public boolean Log_in()//during testing, we assume anyone could log_in
