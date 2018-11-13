@@ -63,16 +63,15 @@ public class Login extends javax.swing.JFrame {
 			public void actionPerformed(ActionEvent arg0){
 				String username = userText.getText();
 				String password = passwordText.getText();
-	
-				if(username.equals("username") && password.equals("password")) 
+				if(Global.SC.Log_in(username, password)) 
 				{
 					LoadFile loading = new LoadFile();
 					frame.setVisible(false);
 				}
 				else
-					{
-						JOptionPane.showMessageDialog(frame, "Invalid username or password");
-					}
+				{
+					JOptionPane.showMessageDialog(frame, "Invalid username or password");
+				}
 			}
 		}
 		);	

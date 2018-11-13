@@ -31,10 +31,16 @@ public class Status_Controller {
 		Process_finish = false;
 		Data_IO_ = new Data_IO();
 	}
-	public boolean Log_in()//during testing, we assume anyone could log_in
+	public boolean Log_in(String username,String password)//during testing, we assume anyone could log_in
 	{
-		Login_status = true;
-		return true;
+		if(new String("3WUser").equals(username)&&new String("5801").equals(password))
+		{
+			Usr = new User("officer","officer");
+			Login_status = true;
+			return true;
+		}
+		Login_status = false;
+		return false;
 	}
 	public boolean LoadData(String path_in) throws IOException
 	{
