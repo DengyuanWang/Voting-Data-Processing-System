@@ -57,21 +57,40 @@ public class Login extends javax.swing.JFrame {
 		loginButton.setBounds(10, 80, 80, 25);
 		panel.add(loginButton);
         
-        ActionListener loginButtonListener = new LoginButtonListener();
-		loginButton.addActionListener(loginButtonListener);
-		
+        // ActionListener loginButtonListener = new LoginButtonListener();
+		// loginButton.addActionListener(loginButtonListener);
+		loginButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				String username = userText.getText();
+				String password = passwordText.getText();
+	
+				if(username.equals("username") && password.equals("password")) 
+				{
+					LoadFile loading = new LoadFile();
+					frame.setVisible(false);
+				}
+				else
+					{
+						JOptionPane.showMessageDialog(frame, "Invalid username or password");
+					}
+			}
+		}
+		);	
 
     }
     
-    public class LoginButtonListener extends javax.swing.JFrame implements ActionListener  {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-			// JOptionPane.showMessageDialog(null, "success");
-        	if(Global.SC.Log_in()) 
-        	{
-        		LoadFile loading = new LoadFile();
-    			frame.setVisible(false);
-        	}
-        }
-    }
+    // public class LoginButtonListener extends javax.swing.JFrame implements ActionListener  {
+    //     @Override
+    //     public void actionPerformed(ActionEvent e) {
+	// 		// JOptionPane.showMessageDialog(null, "success");
+		// 	String username = userText.getText();
+		// 	String password = passwordText.getText();
+
+        // 	if(username.equals("username") && password.equals("password")) 
+        // 	{
+        // 		LoadFile loading = new LoadFile();
+    	// 		frame.setVisible(false);
+        // 	}
+        // }
+    // }
 }
