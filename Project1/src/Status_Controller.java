@@ -81,6 +81,7 @@ public class Status_Controller {
 			System.out.print("please log in\n");
 			return false;
 		}
+		Audit.display();
 		Data_IO_.save_result(Audit.audit_txt, "./");
 		return false;
 	}
