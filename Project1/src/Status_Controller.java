@@ -61,6 +61,7 @@ public class Status_Controller {
 			return false;
 		}
 		boolean voting_res = Voting_sys.process_voting(Data_IO_);
+		Audit=Voting_sys.auditfile;
 		return voting_res;
 	}
 	public boolean DisplayData()
