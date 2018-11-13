@@ -149,7 +149,7 @@ public class Voting_System {
         auditfile.OPLVotingprocess[0]=new OPL_frame();
         auditfile.OPLVotingprocess[0].PartyVotes=OPLpartyvote;
         auditfile.OPLVotingprocess[0].partyFinish=false;
-        auditfile.OPLVotingprocess[0].PartySeats=OPLpartyres;
+        auditfile.OPLVotingprocess[0].PartySeats=(HashMap<String, Integer>) OPLpartyres.clone();
 
         /*
         for(int i=0;i<numofcand;i++)        //First Allocation of Seats
@@ -239,6 +239,8 @@ public class Voting_System {
         auditfile.OPLVotingprocess[2].PartySeats=OPLpartyres;
         auditfile.OPLVotingprocess[2].CandSeats=OPLcandres;
 
+        System.out.println(auditfile.OPLVotingprocess[0].PartySeats);
+        System.out.println(auditfile.OPLVotingprocess[1].PartySeats);
         System.out.println(OPLcandres);
         return OPLcandres;
     }
