@@ -227,6 +227,7 @@ public class Voting_System {
 
         auditfile.OPLVotingprocess[2]=new OPL_frame();
         auditfile.OPLVotingprocess[2].partyFinish=true;
+        auditfile.OPLVotingprocess[2].PartySeats=OPLpartyres;
         auditfile.OPLVotingprocess[2].CandSeats=OPLcandres;
 
         System.out.println(OPLcandres);
