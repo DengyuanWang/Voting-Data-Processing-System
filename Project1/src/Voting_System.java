@@ -44,14 +44,16 @@ public class Voting_System {
     public String IR_Voting()
     {
         int[][] Cand_Ballot;    //Cand_Ballot[i][j]: the number of ballots received by candidate#i with ranking#j
-        int MAXTERM=10000;
+        //int MAXTERM=10000;
         int NUMTERM=0;
-        auditfile.IRVotingprocess=new IR_frame[MAXTERM];
+        //auditfile.IRVotingprocess=new IR_frame[MAXTERM];
+        Vector IRaudit = new Vector();
         boolean win=false;
         int IRwinner=-1;
         Cand_Ballot=new int[numofcand][numofcand+1];
         do {
-            auditfile.IRVotingprocess[NUMTERM]=new IR_frame();
+            //auditfile.IRVotingprocess[NUMTERM]=new IR_frame();
+            IR_frame tmp=new IR_frame();
             for(int j=0;j<numofballot;j++)
             {
                 for(int i=0;i<numofcand;i++)
@@ -72,9 +74,10 @@ public class Voting_System {
                 {
                     win=true;
                     IRwinner = i;
-                    auditfile.IRVotingprocess[NUMTERM].Cand_Ballot=Cand_Ballot;
-                    auditfile.IRVotingprocess[NUMTERM].Winner=IRwinner;
-                    auditfile.IRVotingprocess[NUMTERM].islastterm=true;
+                    tmp.Cand_Ballot=Cand_Ballot;
+                    tmp.Winner=IRwinner;
+                    tmp.islastterm=true;
+
                 }
                 if(Cand_Ballot[i][1]<min1stcandval && Cand_Ballot[i][1]!=-1)    //find candidate with min ranking#1
                 {
@@ -94,12 +97,16 @@ public class Voting_System {
                             Cand_Ballot[cand2nd][1]++;  //add to the ranking#2 of these ballots
                     }
                 }
-                auditfile.IRVotingprocess[NUMTERM].Cand_Ballot=Cand_Ballot;
-                auditfile.IRVotingprocess[NUMTERM].candidate_fail=min1stcandidx;
-                auditfile.IRVotingprocess[NUMTERM].islastterm=false;
+                tmp.Cand_Ballot=Cand_Ballot;
+                tmp.candidate_fail=min1stcandidx;
+                tmp.islastterm=false;
             }
+            IRaudit.addElement(tmp);
             NUMTERM++;
         }while(!win);
+        auditfile.IRVotingprocess=new IR_frame[NUMTERM];
+        IRaudit.copyInto(auditfile.IRVotingprocess);
+        //System.out.println(auditfile.IRVotingprocess);
         return Ballotdata.data[0].get_candidate(IRwinner);
     }
 
