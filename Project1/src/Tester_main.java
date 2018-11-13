@@ -7,21 +7,8 @@ public class Tester_main {
 		System.out.print("hello world\n");
 		System.out.println("Working Directory = " +
 	              System.getProperty("user.dir"));
-		/*
-		Data_IO D_IO = new Data_IO();
-		if(D_IO.specify_path_in("./test.csv")==false)
-		{
-			System.out.print("Specify path fail\n");
-		}
-		
-		if(D_IO.load_data()==false)
-			System.out.print("Load data fail\n");
-		*/
-		Status_Controller SC = new Status_Controller();
-		SC.Log_in();
-		SC.LoadData("./testOPL.csv");
-		boolean ans=SC.ProcessData();
-		SC.SaveData();
+
+		Login lg = new Login();
 	}
 
 }

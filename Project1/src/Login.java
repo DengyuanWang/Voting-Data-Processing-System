@@ -23,17 +23,14 @@ public class Login extends javax.swing.JFrame {
 		placeComponents(panel);
 
 		frame.setVisible(true);
-	}
-	public static void main(String[] args) {
-		Login lg = new Login();
-		lg.frame.setSize(300, 150);
-		lg.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setSize(300, 150);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		JPanel panel = new JPanel();
-		lg.frame.add(panel);
-		lg.placeComponents(panel);
-
-		lg.frame.setVisible(true);
+		JPanel panel2 = new JPanel();
+		frame.add(panel2);
+		placeComponents(panel2);
+		frame.setVisible(true);
+		
 	}
 
 	private void placeComponents(JPanel panel) {
@@ -70,8 +67,11 @@ public class Login extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
 			// JOptionPane.showMessageDialog(null, "success");
-			LoadFile loading = new LoadFile();
-			frame.setVisible(false);
+        	if(Global.SC.Log_in()) 
+        	{
+        		LoadFile loading = new LoadFile();
+    			frame.setVisible(false);
+        	}
         }
     }
 }

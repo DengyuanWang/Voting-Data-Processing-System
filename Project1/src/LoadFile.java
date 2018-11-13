@@ -71,6 +71,8 @@ public class LoadFile extends javax.swing.JFrame {
             
             try{
                 of.PickMe();
+                String path = "./testOPL.csv";
+                Global.SC.LoadData(path);
             }
             catch (Exception e){
                 e.printStackTrace();
@@ -81,8 +83,11 @@ public class LoadFile extends javax.swing.JFrame {
     public class startButtonListener extends javax.swing.JFrame implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            FinishProcess finish = new FinishProcess();
-            frame.setVisible(false);
+        	if(Global.SC.ProcessData())
+        	{
+        		FinishProcess finish = new FinishProcess();
+                frame.setVisible(false);
+        	}   
         }
     }
 
