@@ -43,7 +43,9 @@ public class ScreenView extends javax.swing.JFrame {
         JTextArea jta = new JTextArea();
         jta.setSize(400,300);
         jta.setLocation(10,40);
-        jta.setText("ha");
+        Global.SC.DisplayData();
+        String text = Global.SC.Audit.audit_txt;
+        jta.setText(text);
         panel.add(jta);
 
         JButton backButton = new JButton("Back");

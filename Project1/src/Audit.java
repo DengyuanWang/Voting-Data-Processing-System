@@ -28,14 +28,14 @@ public class Audit {
 			while(true) {
 				if(frame_index==0)//first frame
 				{
-					audit_txt+= "CandidatesName: ";
+					audit_txt = "CandidatesName: ";
 					for(int i=0;i<Number_of_Candidates;i++)
 						audit_txt+=Candidates[i]+" ";
 					audit_txt+="\n";
 					audit_txt+="FirstChoice: ";
 					for(int i=0;i<Number_of_Candidates;i++)
 					{
-						int k = IRVotingprocess[frame_index].Cand_Ballot[i][0];
+						int k = IRVotingprocess[frame_index].Cand_Ballot[i][1];
 						audit_txt += " "+Integer.toString(k)+" ";
 					}	
 					audit_txt+="\n";
@@ -49,14 +49,14 @@ public class Audit {
 					audit_txt+=" "+Integer.toString(frame_index)+"Changes: ";
 					for(int i=0;i<Number_of_Candidates;i++)
 					{
-						int k = IRVotingprocess[frame_index].Cand_Ballot[i][0]-IRVotingprocess[frame_index-1].Cand_Ballot[i][0];
+						int k = IRVotingprocess[frame_index].Cand_Ballot[i][1]-IRVotingprocess[frame_index-1].Cand_Ballot[i][1];
 						audit_txt += " "+Integer.toString(k)+" ";
 					}
 					audit_txt+="\n";
 					audit_txt+=" "+Integer.toString(frame_index)+"Choice: ";
 					for(int i=0;i<Number_of_Candidates;i++)
 					{
-						int k = IRVotingprocess[frame_index].Cand_Ballot[i][0];
+						int k = IRVotingprocess[frame_index].Cand_Ballot[i][1];
 						audit_txt += " "+Integer.toString(k)+" ";
 					}	
 					audit_txt+="\n";
