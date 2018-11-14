@@ -61,7 +61,12 @@ public class Audit {
 					}	
 					audit_txt+="\n";
 				}
-				if(IRVotingprocess[frame_index].islastterm) break;
+				if(IRVotingprocess[frame_index].islastterm) 
+				{ 
+					
+					audit_txt += "Winner: " +Candidates[ IRVotingprocess[frame_index].Winner];
+					break;
+				}
 				frame_index++;
 			}
 			
