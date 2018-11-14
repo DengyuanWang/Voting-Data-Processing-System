@@ -1,3 +1,9 @@
+/** Data I/O
+ * Code for process data I/O operations
+ *@author Yuanli Wang
+ *@version V1.0
+ */
+
 import java.io.*;
 
 public class Data_IO implements Serializable {
@@ -93,6 +99,11 @@ public class Data_IO implements Serializable {
 			return true;
 		}
 	}
+	/**
+	 load data
+	 @return status
+	 */
+
 	public boolean save_result(String content)
 	{
 		if(Path_out=="") return false;
@@ -109,6 +120,12 @@ public class Data_IO implements Serializable {
 		}
 		return true;
 	}
+	/**
+	 save the result
+	 @param content string to be saved
+	 @return status
+	 */
+
 	public boolean save_result(String content,String path)
 	{
 		String fileName;
@@ -127,6 +144,11 @@ public class Data_IO implements Serializable {
 		}
 		return true;
 	}
+	/**
+	 save the result
+	 @param content string to be saved
+	 @return status
+	 */
 
 	public boolean specify_path_in(String path)
 	{

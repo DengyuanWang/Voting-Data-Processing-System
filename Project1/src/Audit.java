@@ -1,3 +1,9 @@
+/** Audit
+ * Class for audit data
+ *@author Yuanli Wang
+ *@version V1.0
+ */
+
 import java.util.*;
 public class Audit {
 	public String Type_of_Voting;//IR or OPL

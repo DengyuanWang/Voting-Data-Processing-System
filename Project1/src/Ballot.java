@@ -1,3 +1,9 @@
+/** Ballot
+ * Class for ballot
+ *@author Yuanli Wang
+ *@version V1.0
+ */
+
 public class Ballot {
 	public String Ballot_type = "";//IR or OPL, means instant run-off or open party list
 	public int voter_index = 0;//or voter index
@@ -34,6 +40,11 @@ public class Ballot {
 		}
 		else return false;
 	}
+	/**
+	 set ballot type
+	 @param type string of ballot type
+	 @return status
+	 */
 	private boolean set_candidatesnum(int num)
 	{
 		if(candidates_num==0&&num>0)//not initialized
@@ -43,9 +54,19 @@ public class Ballot {
 		}
 		else return false;
 	}
+	/**
+	 set the number of candidates
+	 @param num number
+	 @return status
+	 */
 	
 	public int get_candidatesnum() {return candidates_num;}
-	
+	/**
+	 get the number of candidates
+	 @return number
+	 */
+
+
 	private boolean set_candidate(String[] candidates_in)
 	{
 		//OPL
@@ -69,6 +90,12 @@ public class Ballot {
 		}
 		return true;
 	}
+	/**
+	 set the name of candidates
+	 @param candidates_in candidates_in of candidate
+	 @return status
+	 */
+
 	private boolean add_ballot(int[] data_in)//load data into ballot
 	{
 		if(candidates_num!=data_in.length)
@@ -78,6 +105,12 @@ public class Ballot {
 		}
 		return true;
 	}
+	/**
+	 add the ballot
+	 @param data_in data_in of candidate
+	 @return status
+	 */
+
 	public int get_rank_from_cand(int index)
 	{
 		if(index>=0&&index<candidates_num) {
@@ -86,6 +119,12 @@ public class Ballot {
         }
         return -1;
 	}
+	/**
+	 get the rank of candidate
+	 @param index index of candidate
+	 @return rank
+	 */
+
 
 	public int get_cand_from_rank(int rank)
     {
@@ -96,24 +135,48 @@ public class Ballot {
                 return i;
         return -1;
     }
+	/**
+	 get the candidate from its rank
+	 @param rank rank of candidate
+	 @return index of candidate
+	 */
+
 	public int get_vote(int index)
 	{
 		if(index>=0&&index<candidates_num)
 			return vote[index];
 		return -1;
 	}
+	/**
+	 get the number of votes of candidate
+	 @param index index of candidate
+	 @return the number of votes of candidate
+	 */
+
 	public String get_candidate(int index)
 	{
 		if(index>=0&&index<candidates_num)
 			return candidates[index];
 		return "";
 	}
+	/**
+	 get the name of candidate
+	 @param index index of candidate
+	 @return the name of candidate
+	 */
+
 	public String get_party(int index)
 	{
 		if(index>=0&&index<candidates_num)
 			return party_of_candidate[index];
 		return "";
 	}
+	/**
+	 get the party of candidate
+	 @param index index of candidate
+	 @return the party of candidate
+	 */
+
 	public int get_numofseat()
 	{
 		if(Ballot_type.equals("OPL"))
@@ -123,4 +186,9 @@ public class Ballot {
 		System.out.print("error No seatsnum for IR/n");
 		return -1;
 	}
+	/**
+	 get the number of seat
+	 @return the number of seat
+	 */
+
 }

@@ -1,13 +1,12 @@
-import java.io.IOException;
-
-/**
- * 
- */
-
-/**
+/** Status controller
+ * record status in the program
  * @author wangdengyuan
+ * @version V1.0
  *
  */
+
+import java.io.IOException;
+
 public class Status_Controller {
 	
 	public User Usr;
@@ -42,6 +41,11 @@ public class Status_Controller {
 		Login_status = false;
 		return false;
 	}
+	/**
+	 log in
+	 @return status
+	 */
+
 	public boolean LoadData(String path_in) throws IOException
 	{
 		if(Login_status==false)
@@ -60,6 +64,11 @@ public class Status_Controller {
 		Data_load_tag = true;
 		return true;
 	}
+	/**
+	 load data
+	 @return status
+	 */
+
 	public boolean ProcessData()
 	{
 		if(Login_status==false)
@@ -77,6 +86,11 @@ public class Status_Controller {
 		Process_finish = voting_res;
 		return voting_res;
 	}
+	/**
+	 process data
+	 @return status
+	 */
+
 	public boolean DisplayData()
 	{
 		if(Login_status==false||Process_finish==false)
@@ -86,6 +100,11 @@ public class Status_Controller {
 		}
 		return  Audit.display();
 	}
+	/**
+	 display data
+	 @return status
+	 */
+
 	public boolean SaveData()
 	{
 		if(Login_status==false||Process_finish==false)
@@ -97,6 +116,11 @@ public class Status_Controller {
 		Data_IO_.save_result(Audit.audit_txt, "");
 		return false;
 	}
+	/**
+	 save data
+	 @return status
+	 */
+
 	public boolean SaveData(String name)
 	{
 		if(Login_status==false||Process_finish==false)
@@ -108,6 +132,11 @@ public class Status_Controller {
 		Data_IO_.save_result(Audit.audit_txt, "./"+name);
 		return false;
 	}
+	/**
+	 save data
+	 @return status
+	 */
+
 	public boolean Sign_out()
 	{
 		if(Login_status==false)
@@ -117,5 +146,10 @@ public class Status_Controller {
 		}
 		return false;
 	}
+	/**
+	 sign out
+	 @return status
+	 */
+
 
 }

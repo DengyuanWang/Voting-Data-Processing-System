@@ -1,3 +1,9 @@
+/** Voting System
+ * Code for counting votes
+ *@author Yuanli Wang
+ *@version V1.0
+ */
+
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -16,6 +22,11 @@ public class Voting_System {
         result.putAll(map);
         return result;
     }
+    /**
+     sort map by value
+     @param map a hashmap
+     @return sorted map
+     */
 
     public boolean process_voting(Data_IO _data)
     {
@@ -40,6 +51,11 @@ public class Voting_System {
         }
         return true;        //TODO: return status
     }
+    /**
+     process voting data
+     @param data Data_IO object
+     @return return status
+     */
 
     public String IR_Voting()
     {
@@ -109,6 +125,10 @@ public class Voting_System {
         //System.out.println(auditfile.IRVotingprocess);
         return Ballotdata.data[0].get_candidate(IRwinner);
     }
+    /**
+     process IR voting data
+     @return return winner
+     */
 
     public HashMap<String, Integer> OPL_Voting()
     {
@@ -247,4 +267,8 @@ public class Voting_System {
         System.out.println(OPLcandres);
         return OPLcandres;
     }
+    /**
+     process OPL voting data
+     @return return result within a hashmap
+     */
 }
