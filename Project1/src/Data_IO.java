@@ -23,6 +23,10 @@ public class Data_IO implements Serializable {
 		ballot_num = 0;//number of ballot
 		data = null;
 	}
+	/**
+	 class of Data I/O
+	 */
+
 	public boolean load_data() throws IOException
 	{
 		String type="";

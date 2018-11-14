@@ -26,6 +26,10 @@ public class Ballot {
 		else if(add_ballot(vote)==false)
 			System.out.print("ballot data error\n");
 	}
+	/**
+	 class of ballot type
+	 */
+
 	private boolean set_Ballot_type(String type)
 	{
 		if(new String("IR").equals(type)) 
@@ -60,7 +64,10 @@ public class Ballot {
 	 @return status
 	 */
 	
-	public int get_candidatesnum() {return candidates_num;}
+	public int get_candidatesnum()
+	{
+		return candidates_num;
+	}
 	/**
 	 get the number of candidates
 	 @return number
