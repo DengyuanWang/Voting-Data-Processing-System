@@ -9,3 +9,7 @@ Expectations:
 1)  I agreed to do as a team (everyone agrees)
 2)  Evening work
 3)  We will start when assignment is posted.
+
+Default login account:
+Username: 3WUser
+Password: 5801
