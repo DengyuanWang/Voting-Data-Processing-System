@@ -21,7 +21,7 @@ public class ScreenView extends javax.swing.JFrame {
     public JFrame frame = new JFrame("Voting System");
     //constructor for ScreenView class
 	ScreenView() {
-        frame.setSize(430, 400);
+        frame.setSize(430, 500);
         //setting default close operation
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //craete panel

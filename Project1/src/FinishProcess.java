@@ -21,7 +21,7 @@ public class FinishProcess extends javax.swing.JFrame{
     //constructor for FinishProcess class
     FinishProcess(){
         //set size
-		frame.setSize(600, 300);
+		frame.setSize(800, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //set panel
 		JPanel panel = new JPanel();
@@ -43,19 +43,19 @@ public class FinishProcess extends javax.swing.JFrame{
         // panel.addSeparator();
 
 		JButton auditButton = new JButton("Export Audit File");
-		auditButton.setBounds(100, 175 , 200 , 25);
+		auditButton.setBounds(50, 175 , 200 , 25);
         panel.add(auditButton);
 
         JButton screenButton = new JButton("Overview(Screen)");
-		screenButton.setBounds(300, 175 , 100 , 25);
+		screenButton.setBounds(260, 175 , 200 , 25);
         panel.add(screenButton);
 
         JButton mediaButton = new JButton("Export Media File");
-		mediaButton.setBounds(400, 175 , 100 , 25);
+		mediaButton.setBounds(470, 175 , 200 , 25);
         panel.add(mediaButton);
 
         JButton backButton = new JButton("Back");
-        backButton.setBounds(500,175,100,25);
+        backButton.setBounds(680,175,100,25);
         panel.add(backButton);
         //add listener to button to perform output audit
         ActionListener auditButtonListener = new auditButtonListener();
