@@ -1,6 +1,7 @@
 //load page
 //Author Yizhe Wang DengYuan Wang
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.JOptionPane;
@@ -93,11 +94,16 @@ public class LoadFile extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             //if process data then move to FinishProcess interface
-        	if(Global.SC.ProcessData())
-        	{
-        		FinishProcess finish = new FinishProcess();
-                frame.setVisible(false);
-        	}   
+        	try {
+				if(Global.SC.ProcessData())
+				{
+					FinishProcess finish = new FinishProcess();
+				    frame.setVisible(false);
+				}
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}   
         }
     }
 

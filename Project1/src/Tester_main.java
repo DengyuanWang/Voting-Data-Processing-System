@@ -9,7 +9,12 @@ public class Tester_main {
 		System.out.print("hello world\n");
 		System.out.println("Working Directory = " +
 	              System.getProperty("user.dir"));
-
+		if(args.length>0)//have argument
+		{
+			String tmp = args[0];
+			System.out.print(tmp);
+			Global.SC.Data_file_path = tmp;
+		}
 		Login lg = new Login();
 	}
 

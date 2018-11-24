@@ -69,7 +69,7 @@ public class Status_Controller {
 	 @return status
 	 */
 
-	public boolean ProcessData()
+	public boolean ProcessData()throws IOException
 	{
 		if(Login_status==false)
 		{
@@ -78,8 +78,13 @@ public class Status_Controller {
 		}
 		if(Data_load_tag==false)
 		{
-			System.out.print("please Load Data\n");
-			return false;
+			if(Data_file_path!="")
+			{
+				LoadData(Data_file_path);Data_file_path="";
+			}else {
+				System.out.print("please Load Data\n");
+				return false;
+			}	
 		}
 		boolean voting_res = Voting_sys.process_voting(Data_IO_);
 		Audit=Voting_sys.auditfile;
