@@ -21,7 +21,7 @@ public class ScreenView extends javax.swing.JFrame {
     public JFrame frame = new JFrame("Voting System");
     //constructor for ScreenView class
 	ScreenView() {
-        frame.setSize(430, 500);
+        frame.setSize(800, 800);//increase the size of the frame in order to make space for table
         //setting default close operation
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //craete panel
@@ -55,10 +55,16 @@ public class ScreenView extends javax.swing.JFrame {
         jta.setText(text);
         //add the jta to panel
         panel.add(jta);
+        /*
+        This place is for the table
+        I need to figure out how to implement tale in java since I only have experience to implement table in html
+        I need to figure out how to insert data to specific columns and rows
+        */
+
         //add the backbutton
         JButton backButton = new JButton("Back");
         //set the size and position
-        backButton.setBounds(200,355,100,25);
+        backButton.setBounds(200,755,100,25);//move button for table
         //add button
         panel.add(backButton);
         //add listener to backButton to perform the back action
