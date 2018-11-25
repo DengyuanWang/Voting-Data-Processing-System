@@ -14,10 +14,17 @@ public class Audit {
 	public int[] Candidates_vote;
 	public int Winner;//index of winner
 	public String audit_txt;
+	public String invbal_txt;
 	//public Process
 	public OPL_frame[] OPLVotingprocess;
 	public IR_frame[] IRVotingprocess;
+
+	public Integer[] IRVInvalidBallots; //invalid ballots in IRV
+	public int IRVInvalidBallots_size;
+	private Data_IO __ballotdat__;
+
 	public Audit(Data_IO DIO){
+		__ballotdat__=DIO;
 		Type_of_Voting = DIO.data[0].Ballot_type;//IR or OPL
 		Number_of_Candidates = DIO.data[0].get_candidatesnum();
 		Candidates = new String[Number_of_Candidates];
@@ -26,6 +33,27 @@ public class Audit {
 		Number_of_Ballots = DIO.ballot_num;
 		Winner = -1;//index of winner
 	}
+
+	public boolean WriteInvBallots()
+	{
+		if(new String("IR").equals(Type_of_Voting))
+		{
+			invbal_txt="Line - ";
+			for(int i=0;i<Number_of_Candidates;i++)
+				invbal_txt+=Candidates[i]+" ";
+			invbal_txt+="\n";
+			for(int i=0;i<IRVInvalidBallots_size;i++)
+			{
+				int N=IRVInvalidBallots[i];
+				invbal_txt+=N+1;
+				invbal_txt+=" - ";
+				invbal_txt+=__ballotdat__.data[N].Ballot2String();
+				invbal_txt+="\n";
+			}
+		}
+		return true;
+	}
+
 	public boolean display()
 	{
 		if(new String("IR").equals(Type_of_Voting))

@@ -62,23 +62,48 @@ public class Voting_System {
         int[][] Cand_Ballot;    //Cand_Ballot[i][j]: the number of ballots received by candidate#i with ranking#j
         int NUMTERM=0;
         Vector IRaudit = new Vector();
+        Vector IRinvalid = new Vector();
         boolean win=false;
         int IRwinner=-1;
         Cand_Ballot=new int[numofcand][numofcand+1];
+        Set<Integer> invballot=new HashSet<>();
+
+        for(int j=0;j<numofballot;j++)
+        {
+            int numofranks=0;
+            for(int i=0;i<numofcand;i++)
+            {
+                int candrank=Ballotdata.data[j].get_rank_from_cand(i); //rank of candidate#i in ballot#j
+                if(candrank!=-1)
+                    numofranks++;
+            }
+            //System.out.println(numofranks+" -- "+numofcand/2);
+            if(numofranks<numofcand/2)
+            {
+                //TODO: invalid ballot
+                IRinvalid.add(j);
+                invballot.add(j);
+            }
+        }
+
         do {
             IR_frame tmp=new IR_frame();
             for(int j=0;j<numofballot;j++)
             {
-                for(int i=0;i<numofcand;i++)
+                if(!invballot.contains(j))
                 {
-                    int candrank=Ballotdata.data[j].get_rank_from_cand(i); //rank of candidate#i in ballot#j
-                    if(candrank!=-1)
+                    for(int i=0;i<numofcand;i++)
                     {
-                        Cand_Ballot[i][candrank]++;
+                        int candrank=Ballotdata.data[j].get_rank_from_cand(i); //rank of candidate#i in ballot#j
+                        if(candrank!=-1)
+                        {
+                            Cand_Ballot[i][candrank]++;
+                            //System.out.println(j+"--"+i+"=="+candrank);
+                        }
                     }
                 }
             }
-            int numofhalfballot=numofballot/2;
+            int numofhalfballot=(int)Math.ceil((double) (numofballot-IRinvalid.size())/2.0);
             int min1stcandval=Cand_Ballot[0][1];
             int min1stcandidx=0;
             for(int i=0;i<numofcand;i++)
@@ -103,11 +128,14 @@ public class Voting_System {
                 Cand_Ballot[min1stcandidx][1]=-1;       //candidate #min1stcandidx is defeated
                 for(int i=0;i<numofballot;i++)
                 {
-                    if(Ballotdata.data[i].get_cand_from_rank(1)==min1stcandidx)     //for the ballots which elect min1stcandidx as ranking#1 ,
+                    if(!invballot.contains(i))
                     {
-                        int cand2nd=Ballotdata.data[i].get_cand_from_rank(2);
-                        if(cand2nd!=-1)
-                            Cand_Ballot[cand2nd][1]++;  //add to the ranking#2 of these ballots
+                        if (Ballotdata.data[i].get_cand_from_rank(1) == min1stcandidx)     //for the ballots which elect min1stcandidx as ranking#1 ,
+                        {
+                            int cand2nd = Ballotdata.data[i].get_cand_from_rank(2);
+                            if (cand2nd != -1)
+                                Cand_Ballot[cand2nd][1]++;  //add to the ranking#2 of these ballots
+                        }
                     }
                 }
                 tmp.Cand_Ballot=Cand_Ballot;
@@ -119,6 +147,13 @@ public class Voting_System {
         }while(!win);
         auditfile.IRVotingprocess=new IR_frame[NUMTERM];
         IRaudit.copyInto(auditfile.IRVotingprocess);
+        auditfile.IRVInvalidBallots=new Integer[IRinvalid.size()];
+        auditfile.IRVInvalidBallots_size=IRinvalid.size();
+        if(IRinvalid.size()>0)
+        {
+            System.out.println("IR invalid size == "+(IRinvalid.size()));
+            IRinvalid.copyInto(auditfile.IRVInvalidBallots);
+        }
         return Ballotdata.data[0].get_candidate(IRwinner);
     }
     /**

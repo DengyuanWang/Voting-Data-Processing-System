@@ -4,7 +4,8 @@
  * @version V1.0
  *
  */
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.io.IOException;
 
 public class Status_Controller {
@@ -135,6 +136,27 @@ public class Status_Controller {
 		}
 		Audit.display();
 		Data_IO_.save_result(Audit.audit_txt, "./"+name);
+		return false;
+	}
+	/**
+	 save data
+	 @return status
+	 */
+
+	public boolean SaveInvData()
+	{
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String name="invalidated_";
+		name+=sdf.format(date);
+		name+=".txt";
+		if(Login_status==false||Process_finish==false)
+		{
+			System.out.print("please log in\n");
+			return false;
+		}
+		Audit.WriteInvBallots();
+		Data_IO_.save_result(Audit.invbal_txt, "./"+name);
 		return false;
 	}
 	/**

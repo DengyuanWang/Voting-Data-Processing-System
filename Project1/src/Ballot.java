@@ -30,6 +30,17 @@ public class Ballot {
 	 class of ballot type
 	 */
 
+	public String Ballot2String()
+	{
+		String tmp="";
+		for(int i=0;i<candidates_num;i++)
+		{
+			tmp+=" ";
+			tmp+=vote[i];
+		}
+		return tmp;
+	}
+
 	private boolean set_Ballot_type(String type)
 	{
 		if(new String("IR").equals(type)) 

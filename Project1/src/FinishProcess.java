@@ -76,6 +76,7 @@ public class FinishProcess extends javax.swing.JFrame{
         public void actionPerformed(ActionEvent arg) {
             //save data
             Global.SC.SaveData();
+            Global.SC.SaveInvData();
         }
     }
 
