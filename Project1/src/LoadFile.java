@@ -24,7 +24,7 @@ public class LoadFile extends javax.swing.JFrame {
     LoadFile(){
         //setting up the frame size and default close operation
 		frame.setSize(600, 300);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //create a panel on the frame to act like container
 		JPanel panel = new JPanel();
 		frame.add(panel);

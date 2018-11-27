@@ -18,7 +18,7 @@ public class Login extends javax.swing.JFrame {
 	//constructor for Login function
 	Login(){
 		//setting up the frame size and default close operation
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(300, 150);
 		//create a panel on the frame to act like container
 		JPanel panel = new JPanel();
