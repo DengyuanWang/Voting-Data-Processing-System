@@ -1,0 +1,6 @@
+CandidatesName: Rosen (D)  Kleinberg (R)  Chou (I)  Royce(L) 
+FirstChoice:  4  0  5  4 
+CandidatesName: Rosen (D)  Kleinberg (R)  Chou (I)  Royce(L) 
+ 1Changes:  0  0  0  0 
+ 1Choice:  4  0  5  4 
+Winner:  Royce(L)
