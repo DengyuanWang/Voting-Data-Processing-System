@@ -60,16 +60,21 @@ public class ScreenView extends javax.swing.JFrame {
         I need to figure out how to implement tale in java since I only have experience to implement table in html
         I need to figure out how to insert data to specific columns and rows
         */
-
-        //add the backbutton
         JButton backButton = new JButton("Back");
-        //set the size and position
-        backButton.setBounds(200,755,100,25);//move button for table
-        //add button
+        backButton.setBounds(500,500,100,25);
         panel.add(backButton);
-        //add listener to backButton to perform the back action
+
         ActionListener backButtonListener = new backButtonListener();
         backButton.addActionListener(backButtonListener);
+        //add the backbutton
+        // JButton backButton = new JButton("Back");
+        // //set the size and position
+        // backButton.setBounds(500,500,100,25);//move button for table
+        // //add button
+        // panel.add(backButton);
+        // //add listener to backButton to perform the back action
+        // ActionListener backButtonListener = new backButtonListener();
+        // backButton.addActionListener(backButtonListener);
     }
 
     public class backButtonListener extends javax.swing.JFrame implements ActionListener {
