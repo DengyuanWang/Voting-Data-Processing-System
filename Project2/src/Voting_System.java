@@ -4,6 +4,7 @@
  *@version V1.0
  */
 
+import java.awt.*;
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -27,6 +28,16 @@ public class Voting_System {
      @param map a hashmap
      @return sorted map
      */
+
+    private static int pickRandom(int x, int y){
+        int array[]=new int[2];
+        array[0]=x;
+        array[1]=y;
+        int length=array.length;
+        Random random = new Random();
+        System.out.println("RANDOM:  "+x+" , "+y+"=="+array[random.nextInt(length)]);
+        return array[random.nextInt(length)];
+    }
 
     public boolean process_voting(Data_IO _data)
     {
@@ -86,19 +97,20 @@ public class Voting_System {
             }
         }
 
+        boolean fstrun=true;
         do {
             IR_frame tmp=new IR_frame();
-            for(int j=0;j<numofballot;j++)
+            if(fstrun)
             {
-                if(!invballot.contains(j))
-                {
-                    for(int i=0;i<numofcand;i++)
-                    {
-                        int candrank=Ballotdata.data[j].get_rank_from_cand(i); //rank of candidate#i in ballot#j
-                        if(candrank!=-1)
-                        {
-                            Cand_Ballot[i][candrank]++;
-                            //System.out.println(j+"--"+i+"=="+candrank);
+                fstrun = false;
+                for (int j = 0; j < numofballot; j++) {
+                    if (!invballot.contains(j)) {
+                        for (int i = 0; i < numofcand; i++) {
+                            int candrank = Ballotdata.data[j].get_rank_from_cand(i); //rank of candidate#i in ballot#j
+                            if (candrank != -1) {
+                                Cand_Ballot[i][candrank]++;
+                                //System.out.println(j+"--"+i+"=="+candrank);
+                            }
                         }
                     }
                 }
@@ -108,19 +120,32 @@ public class Voting_System {
             int min1stcandidx=0;
             for(int i=0;i<numofcand;i++)
             {
-                if(Cand_Ballot[i][1]>=numofhalfballot)      //greater than half, winner
+                //System.out.println(i+"**"+Cand_Ballot[i][1]+"**"+numofhalfballot);
+                if(!win && Cand_Ballot[i][1]>numofhalfballot)      //greater than half, winner
                 {
                     win=true;
                     IRwinner = i;
                     tmp.Cand_Ballot=Cand_Ballot;
                     tmp.Winner=IRwinner;
                     tmp.islastterm=true;
-
+                }
+                else if(win && Cand_Ballot[i][1]>=numofhalfballot)
+                {
+                    win=true;
+                    IRwinner = pickRandom(i,IRwinner);
+                    tmp.Cand_Ballot=Cand_Ballot;
+                    tmp.Winner=IRwinner;
+                    tmp.islastterm=true;
                 }
                 if(Cand_Ballot[i][1]<min1stcandval && Cand_Ballot[i][1]!=-1)    //find candidate with min ranking#1
                 {
                     min1stcandval = Cand_Ballot[i][1];
                     min1stcandidx = i;
+                }
+                else if(Cand_Ballot[i][1]==min1stcandval && Cand_Ballot[i][1]!=-1)    //choose random one while finding 2 candidates with min ranking#1
+                {
+                    min1stcandval = Cand_Ballot[i][1];
+                    min1stcandidx = pickRandom(min1stcandidx, i);
                 }
             }
             if(!win)
@@ -138,7 +163,12 @@ public class Voting_System {
                         }
                     }
                 }
-                tmp.Cand_Ballot=Cand_Ballot;
+                //tmp.Cand_Ballot=Cand_Ballot;
+                tmp.Cand_Ballot=new int[numofcand][numofcand+1];
+                for(int i=0;i<Cand_Ballot.length;i++)
+                {
+                    tmp.Cand_Ballot[i]=Cand_Ballot[i].clone();
+                }
                 tmp.candidate_fail=min1stcandidx;
                 tmp.islastterm=false;
             }
