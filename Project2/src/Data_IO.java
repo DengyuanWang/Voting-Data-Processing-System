@@ -36,9 +36,7 @@ public class Data_IO implements Serializable {
 		int seats_num = 0;
 		String[] candidates_in = null;
 		int[] vote = null;
-		
-		
-		
+
 		if(Path_in=="")
 			return false;
 		else {
@@ -96,7 +94,6 @@ public class Data_IO implements Serializable {
 					//}
 					//System.out.print("\n");
 					voter_index++;
-					
 					break;
 				}
 			}
