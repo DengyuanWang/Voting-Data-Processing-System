@@ -120,14 +120,20 @@ public class Voting_System {
                 if(!win && Cand_Ballot[i][1]>numofhalfballot) {     //greater than half, winner
                     win=true;
                     IRwinner = i;
-                    tmp.Cand_Ballot=Cand_Ballot;
+                    //tmp.Cand_Ballot=Cand_Ballot;
+                    tmp.Cand_Ballot=new int[numofcand][numofcand+1];
+                    for(int q=0;q<Cand_Ballot.length;q++) {
+                        tmp.Cand_Ballot[q]=Cand_Ballot[q].clone(); }
                     tmp.Winner=IRwinner;
                     tmp.islastterm=true;
                 }
                 else if(win && Cand_Ballot[i][1]>numofhalfballot) {
                     win=true;
                     IRwinner = pickRandom(i,IRwinner);
-                    tmp.Cand_Ballot=Cand_Ballot;
+                    //tmp.Cand_Ballot=Cand_Ballot;
+                    tmp.Cand_Ballot=new int[numofcand][numofcand+1];
+                    for(int q=0;q<Cand_Ballot.length;q++) {
+                        tmp.Cand_Ballot[q]=Cand_Ballot[q].clone(); }
                     tmp.Winner=IRwinner;
                     tmp.islastterm=true;
                 }
@@ -141,6 +147,10 @@ public class Voting_System {
                 }
             }
             if(!win) {
+                //tmp.Cand_Ballot=Cand_Ballot;
+                tmp.Cand_Ballot=new int[numofcand][numofcand+1];
+                for(int i=0;i<Cand_Ballot.length;i++) {
+                    tmp.Cand_Ballot[i]=Cand_Ballot[i].clone(); }
                 Cand_Ballot[min1stcandidx][1]=-1;       //candidate #min1stcandidx is defeated
                 for(int i=0;i<numofballot;i++) {
                     if(!invballot.contains(i)) {
@@ -151,10 +161,6 @@ public class Voting_System {
                         }
                     }
                 }
-                //tmp.Cand_Ballot=Cand_Ballot;
-                tmp.Cand_Ballot=new int[numofcand][numofcand+1];
-                for(int i=0;i<Cand_Ballot.length;i++) {
-                    tmp.Cand_Ballot[i]=Cand_Ballot[i].clone(); }
                 tmp.candidate_fail=min1stcandidx;
                 tmp.islastterm=false;
             }

@@ -84,7 +84,10 @@ public class Audit {
 					for(int i=0;i<Number_of_Candidates;i++)
 					{
 						int k = IRVotingprocess[frame_index].Cand_Ballot[i][1]-IRVotingprocess[frame_index-1].Cand_Ballot[i][1];
-						audit_txt += " "+Integer.toString(k)+" ";
+						if(k<0)
+							audit_txt += " X ";
+						else
+							audit_txt += " "+Integer.toString(k)+" ";
 					}
 					audit_txt+="\n";
 					audit_txt+=" "+Integer.toString(frame_index)+"Choice: ";
