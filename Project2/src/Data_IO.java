@@ -29,6 +29,11 @@ public class Data_IO implements Serializable {
 
 	public boolean load_data() throws IOException
 	{
+		if(data!=null)
+		{
+			data = null;
+			System.gc();
+		}
 		String type="";
 		int voter_index = 0;
 		int candidatenum = 0;
