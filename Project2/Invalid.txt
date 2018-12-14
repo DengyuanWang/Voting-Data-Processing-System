@@ -1,4 +1,0 @@
-Line - Rosen (D)  Kleinberg (R)  Chou (I)  Royce(L) 
-1 -  1 0 2 0
-4 -  0 0 1 2
-5 -  0 0 0 1

@@ -1,3 +1,0 @@
-CandidatesName: Rosen (D)  Kleinberg (R)  Chou (I)  Royce(L) 
-FirstChoice:  3  0  2  0 
-Winner:  Chou (I)
