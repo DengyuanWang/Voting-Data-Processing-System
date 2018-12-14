@@ -19,7 +19,7 @@ public class Voting_System {
      @param map a hashmap
      @return sorted map
      */
-    public static TreeMap<Integer, Integer> sortMapByValue(HashMap<Integer, Integer> map){
+    private static TreeMap<Integer, Integer> sortMapByValue(HashMap<Integer, Integer> map){
         Comparator<Integer> comparator = new ValueComparator(map);
         //TreeMap is a map sorted by its keys.
         //The comparator is used to sort the TreeMap by keys.
@@ -77,7 +77,7 @@ public class Voting_System {
      process IR voting data
      @return return winner
      */
-    public String IR_Voting()
+    private String IR_Voting()
     {
         int[][] Cand_Ballot;    //Cand_Ballot[i][j]: the number of ballots received by candidate#i with ranking#j
         int NUMTERM=0;
@@ -88,22 +88,17 @@ public class Voting_System {
         Cand_Ballot=new int[numofcand][numofcand+1];
         Set<Integer> invballot=new HashSet<>();
         boolean fstrun=true;
-
         for(int j=0;j<numofballot;j++) {
             int numofranks=0;
             for(int i=0;i<numofcand;i++) {
                 int candrank=Ballotdata.data[j].get_rank_from_cand(i); //rank of candidate#i in ballot#j
-                if(candrank!=-1)
-                    numofranks++;
+                if(candrank!=-1)   numofranks++;
             }
-            //System.out.println(numofranks+" -- "+numofcand/2);
-            if(numofranks<numofcand/2) {
-                //TODO: invalid ballot
+            if(numofranks<numofcand/2) {       //invalid ballot
                 IRinvalid.add(j);
                 invballot.add(j);
             }
         }
-
         do {
             IR_frame tmp=new IR_frame();
             if(fstrun) {
@@ -112,24 +107,18 @@ public class Voting_System {
                     if (!invballot.contains(j)) {
                         for (int i = 0; i < numofcand; i++) {
                             int candrank = Ballotdata.data[j].get_rank_from_cand(i); //rank of candidate#i in ballot#j
-                            if (candrank != -1) {
-                                Cand_Ballot[i][candrank]++;
-                                //System.out.println(j+"--"+i+"=="+candrank);
-                            }
+                            if (candrank != -1)    Cand_Ballot[i][candrank]++;
                         }
                     }
                 }
             }
             int numofhalfballot=(int)Math.floor((double) (numofballot-IRinvalid.size())/2.0);
-            System.out.println("Half Ballot == "+numofhalfballot);
             int min1stcandval=Cand_Ballot[0][1];
             int min1stcandidx=0;
             for(int i=0;i<numofcand;i++) {
-                System.out.println(i+"**"+Cand_Ballot[i][1]+"**"+numofhalfballot);
                 if(!win && Cand_Ballot[i][1]>numofhalfballot) {     //greater than half, winner
                     win=true;
                     IRwinner = i;
-                    //tmp.Cand_Ballot=Cand_Ballot;
                     tmp.Cand_Ballot=new int[numofcand][numofcand+1];
                     for(int q=0;q<Cand_Ballot.length;q++) {
                         tmp.Cand_Ballot[q]=Cand_Ballot[q].clone(); }
@@ -139,7 +128,6 @@ public class Voting_System {
                 else if(win && Cand_Ballot[i][1]>numofhalfballot) {
                     win=true;
                     IRwinner = pickRandom(i,IRwinner);
-                    //tmp.Cand_Ballot=Cand_Ballot;
                     tmp.Cand_Ballot=new int[numofcand][numofcand+1];
                     for(int q=0;q<Cand_Ballot.length;q++) {
                         tmp.Cand_Ballot[q]=Cand_Ballot[q].clone(); }
@@ -156,7 +144,6 @@ public class Voting_System {
                 }
             }
             if(!win) {
-                //tmp.Cand_Ballot=Cand_Ballot;
                 tmp.Cand_Ballot=new int[numofcand][numofcand+1];
                 for(int i=0;i<Cand_Ballot.length;i++) {
                     tmp.Cand_Ballot[i]=Cand_Ballot[i].clone(); }
@@ -165,8 +152,7 @@ public class Voting_System {
                     if(!invballot.contains(i)) {
                         if (Ballotdata.data[i].get_cand_from_rank(1) == min1stcandidx) {    //for the ballots which elect min1stcandidx as ranking#1 ,
                             int cand2nd = Ballotdata.data[i].get_cand_from_rank(2);
-                            if (cand2nd != -1)
-                                Cand_Ballot[cand2nd][1]++;  //add to the ranking#2 of these ballots
+                            if (cand2nd != -1)    Cand_Ballot[cand2nd][1]++;  //add to the ranking#2 of these ballots
                         }
                     }
                 }
@@ -180,10 +166,7 @@ public class Voting_System {
         IRaudit.copyInto(auditfile.IRVotingprocess);
         auditfile.IRVInvalidBallots=new Integer[IRinvalid.size()];
         auditfile.IRVInvalidBallots_size=IRinvalid.size();
-        if(IRinvalid.size()>0) {
-            System.out.println("IR invalid size == "+(IRinvalid.size()));
-            IRinvalid.copyInto(auditfile.IRVInvalidBallots);
-        }
+        if(IRinvalid.size()>0)    IRinvalid.copyInto(auditfile.IRVInvalidBallots);
         return Ballotdata.data[0].get_candidate(IRwinner);
     }
 
@@ -191,7 +174,7 @@ public class Voting_System {
      process OPL voting data
      @return return result within a hashmap
      */
-    public HashMap<String, Integer> OPL_Voting()
+    private HashMap<String, Integer> OPL_Voting()
     {
         int numofseats=Ballotdata.data[0].get_numofseat();
         int[] OPLvote=new int[numofcand];       //votes
@@ -213,22 +196,14 @@ public class Voting_System {
             OPLpartyres.put(party, vootes/quota );
             OPLpartyremain.put(party, vootes%quota);
             undecidedseat-=OPLpartyres.get(party);
-            System.out.print(party);
-            System.out.print("--");
-            System.out.print(OPLpartyres.get(party));
-            System.out.print("--");
-            System.out.println(OPLpartyremain.get(party));
         }
-        System.out.println(undecidedseat);
         auditfile.OPLVotingprocess=new OPL_frame[3];
         auditfile.OPLVotingprocess[0]=new OPL_frame();
         auditfile.OPLVotingprocess[0].PartyVotes=OPLpartyvote;
         auditfile.OPLVotingprocess[0].partyFinish=false;
         auditfile.OPLVotingprocess[0].PartySeats=(HashMap<String, Integer>) OPLpartyres.clone();
-
         while(undecidedseat!=0) {            //Second Allocation of Seats
             int tmpval=-1;
-            int tmpidx=-1;
             String tmppty="";
             undecidedseat--;
             for(String party: OPLpartyvote.keySet()) {
@@ -239,57 +214,30 @@ public class Voting_System {
             }
             OPLpartyres.put(tmppty, OPLpartyres.get(tmppty) + 1);
         }
-        for(String party: OPLpartyvote.keySet()) {
-            System.out.print(party);
-            System.out.print("==");
-            System.out.println(OPLpartyres.get(party));
-        }
-
         auditfile.OPLVotingprocess[1]=new OPL_frame();
         auditfile.OPLVotingprocess[1].partyFinish=false;
         auditfile.OPLVotingprocess[1].PartyVotes=OPLpartyremain;
         auditfile.OPLVotingprocess[1].PartySeats=OPLpartyres;
-
         for(String party: OPLpartyvote.keySet()) {
-            System.out.print(party);
-            System.out.print("---");
-            System.out.print(OPLpartyres.get(party));
-            System.out.println("---");
-
             HashMap<Integer, Integer> candinparty = new HashMap<Integer, Integer>();
             for(int i=0;i<numofcand;i++) {
-                if(Ballotdata.data[0].get_party(i).equals(party)) {
+                if(Ballotdata.data[0].get_party(i).equals(party))
                     candinparty.put(i, OPLvote[i]);
-                }
             }
             TreeMap<Integer, Integer> sortedMap = sortMapByValue(candinparty);
-            System.out.println(sortedMap);
-
             Set<Integer> keys=sortedMap.keySet();
             Iterator<Integer> iter=keys.iterator();
             for(int i=0;i<OPLpartyres.get(party);i++) {
                 int idx=iter.next();
-                System.out.print(Ballotdata.data[0].get_party(idx));
-                System.out.print("***");
-                System.out.print(Ballotdata.data[0].get_candidate(idx));
-                System.out.print("***");
-                System.out.print(i+1);
-                System.out.println("");
                 OPLcandres.put(Ballotdata.data[0].get_candidate(idx),i+1);
                 OPLcandparty.put(Ballotdata.data[0].get_candidate(idx), Ballotdata.data[0].get_party(idx));
             }
         }
-
         auditfile.OPLVotingprocess[2]=new OPL_frame();
         auditfile.OPLVotingprocess[2].partyFinish=true;
         auditfile.OPLVotingprocess[2].PartySeats=OPLpartyres;
         auditfile.OPLVotingprocess[2].CandSeats=OPLcandres;
         auditfile.OPLVotingprocess[2].CandParty=OPLcandparty;
-
-        System.out.println(auditfile.OPLVotingprocess[0].PartySeats);
-        System.out.println(auditfile.OPLVotingprocess[1].PartySeats);
-        System.out.println(OPLcandres);
         return OPLcandres;
     }
-
 }
