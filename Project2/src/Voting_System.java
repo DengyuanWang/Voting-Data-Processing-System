@@ -14,7 +14,11 @@ public class Voting_System {
     public int numofballot;
     public int numofcand;
     public Audit auditfile;
-
+    /**
+     sort map by value
+     @param map a hashmap
+     @return sorted map
+     */
     public static TreeMap<Integer, Integer> sortMapByValue(HashMap<Integer, Integer> map){
         Comparator<Integer> comparator = new ValueComparator(map);
         //TreeMap is a map sorted by its keys.
@@ -23,12 +27,13 @@ public class Voting_System {
         result.putAll(map);
         return result;
     }
-    /**
-     sort map by value
-     @param map a hashmap
-     @return sorted map
-     */
 
+    /**
+     pick a random number
+     @param x input number x
+     @param y another input number y
+     @return return x or y randomly
+     */
     private static int pickRandom(int x, int y){
         int array[]=new int[2];
         array[0]=x;
@@ -39,6 +44,11 @@ public class Voting_System {
         return array[random.nextInt(length)];
     }
 
+    /**
+     process voting data
+     @param _data Data_IO object
+     @return return status
+     */
     public boolean process_voting(Data_IO _data)
     {
     	auditfile= new Audit(_data);
@@ -62,12 +72,11 @@ public class Voting_System {
         }
         return true;        //TODO: return status
     }
-    /**
-     process voting data
-     @param data Data_IO object
-     @return return status
-     */
 
+    /**
+     process IR voting data
+     @return return winner
+     */
     public String IR_Voting()
     {
         int[][] Cand_Ballot;    //Cand_Ballot[i][j]: the number of ballots received by candidate#i with ranking#j
@@ -177,11 +186,11 @@ public class Voting_System {
         }
         return Ballotdata.data[0].get_candidate(IRwinner);
     }
-    /**
-     process IR voting data
-     @return return winner
-     */
 
+    /**
+     process OPL voting data
+     @return return result within a hashmap
+     */
     public HashMap<String, Integer> OPL_Voting()
     {
         int numofseats=Ballotdata.data[0].get_numofseat();
@@ -282,8 +291,5 @@ public class Voting_System {
         System.out.println(OPLcandres);
         return OPLcandres;
     }
-    /**
-     process OPL voting data
-     @return return result within a hashmap
-     */
+
 }

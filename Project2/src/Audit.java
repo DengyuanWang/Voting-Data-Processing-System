@@ -22,7 +22,9 @@ public class Audit {
 	public Integer[] IRVInvalidBallots; //invalid ballots in IRV
 	public int IRVInvalidBallots_size;
 	private Data_IO __ballotdat__;
-
+	/**
+	 class of audit info
+	 */
 	public Audit(Data_IO DIO){
 		__ballotdat__=DIO;
 		Type_of_Voting = DIO.data[0].Ballot_type;//IR or OPL
@@ -34,6 +36,10 @@ public class Audit {
 		Winner = -1;//index of winner
 	}
 
+	/**
+	 Write Invalid Ballots into file
+	 @return status
+	 */
 	public boolean WriteInvBallots()
 	{
 		if(new String("IR").equals(Type_of_Voting))
@@ -53,7 +59,10 @@ public class Audit {
 		}
 		return true;
 	}
-
+	/**
+	 display audit info
+	 @return status
+	 */
 	public boolean display()
 	{
 		if(new String("IR").equals(Type_of_Voting))

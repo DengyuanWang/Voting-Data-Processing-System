@@ -1,5 +1,9 @@
-//main class here
-//Author Yizhe Wang Dengyuang Wang
+/** main class
+ * code for main class
+ *@author Yizhe Wang DengYuan Wang
+ *@version V1.0
+ */
+
 import java.io.IOException;
 
 public class Tester_main {

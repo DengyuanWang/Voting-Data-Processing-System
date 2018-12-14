@@ -12,6 +12,9 @@ public class Ballot {
 	private String[] party_of_candidate; 
 	private int[] vote;         //vote[i]: rank of candidate #i
 	private int seatnum;
+	/**
+	 class of ballot type
+	 */
 	public Ballot(String type,int seat_num, int voter_index,int candidatenum,String[] candidates_in,int[] vote)
 	{
 		Ballot_type = "";//IS or OPL, means instant run-off or open party list
@@ -26,10 +29,11 @@ public class Ballot {
 		else if(add_ballot(vote)==false)
 			System.out.print("ballot data error\n");
 	}
-	/**
-	 class of ballot type
-	 */
 
+	/**
+	 convert ballot type to string
+	 @return string
+	 */
 	public String Ballot2String()
 	{
 		String tmp="";
@@ -40,7 +44,11 @@ public class Ballot {
 		}
 		return tmp;
 	}
-
+	/**
+	 set ballot type
+	 @param type string of ballot type
+	 @return status
+	 */
 	private boolean set_Ballot_type(String type)
 	{
 		if(new String("IR").equals(type)) 
@@ -56,8 +64,8 @@ public class Ballot {
 		else return false;
 	}
 	/**
-	 set ballot type
-	 @param type string of ballot type
+	 set the number of candidates
+	 @param num number
 	 @return status
 	 */
 	private boolean set_candidatesnum(int num)
@@ -70,21 +78,18 @@ public class Ballot {
 		else return false;
 	}
 	/**
-	 set the number of candidates
-	 @param num number
-	 @return status
+	 get the number of candidates
+	 @return number
 	 */
-	
 	public int get_candidatesnum()
 	{
 		return candidates_num;
 	}
 	/**
-	 get the number of candidates
-	 @return number
+	 set the name of candidates
+	 @param candidates_in candidates_in of candidate
+	 @return status
 	 */
-
-
 	private boolean set_candidate(String[] candidates_in)
 	{
 		//OPL
@@ -109,11 +114,10 @@ public class Ballot {
 		return true;
 	}
 	/**
-	 set the name of candidates
-	 @param candidates_in candidates_in of candidate
+	 add the ballot
+	 @param data_in data_in of candidate
 	 @return status
 	 */
-
 	private boolean add_ballot(int[] data_in)//load data into ballot
 	{
 		if(candidates_num!=data_in.length)
@@ -123,12 +127,12 @@ public class Ballot {
 		}
 		return true;
 	}
-	/**
-	 add the ballot
-	 @param data_in data_in of candidate
-	 @return status
-	 */
 
+	/**
+	 get the rank of candidate
+	 @param index index of candidate
+	 @return rank
+	 */
 	public int get_rank_from_cand(int index)
 	{
 		if(index>=0&&index<candidates_num) {
@@ -138,12 +142,10 @@ public class Ballot {
         return -1;
 	}
 	/**
-	 get the rank of candidate
-	 @param index index of candidate
-	 @return rank
+	 get the candidate from its rank
+	 @param rank rank of candidate
+	 @return index of candidate
 	 */
-
-
 	public int get_cand_from_rank(int rank)
     {
         if(rank==0)
@@ -154,11 +156,10 @@ public class Ballot {
         return -1;
     }
 	/**
-	 get the candidate from its rank
-	 @param rank rank of candidate
-	 @return index of candidate
+	 get the number of votes of candidate
+	 @param index index of candidate
+	 @return the number of votes of candidate
 	 */
-
 	public int get_vote(int index)
 	{
 		if(index>=0&&index<candidates_num)
@@ -166,11 +167,10 @@ public class Ballot {
 		return -1;
 	}
 	/**
-	 get the number of votes of candidate
+	 get the name of candidate
 	 @param index index of candidate
-	 @return the number of votes of candidate
+	 @return the name of candidate
 	 */
-
 	public String get_candidate(int index)
 	{
 		if(index>=0&&index<candidates_num)
@@ -178,11 +178,10 @@ public class Ballot {
 		return "";
 	}
 	/**
-	 get the name of candidate
+	 get the party of candidate
 	 @param index index of candidate
-	 @return the name of candidate
+	 @return the party of candidate
 	 */
-
 	public String get_party(int index)
 	{
 		if(index>=0&&index<candidates_num)
@@ -190,11 +189,9 @@ public class Ballot {
 		return "";
 	}
 	/**
-	 get the party of candidate
-	 @param index index of candidate
-	 @return the party of candidate
+	 get the number of seat
+	 @return the number of seat
 	 */
-
 	public int get_numofseat()
 	{
 		if(Ballot_type.equals("OPL"))
@@ -204,9 +201,5 @@ public class Ballot {
 		System.out.print("error No seatsnum for IR/n");
 		return -1;
 	}
-	/**
-	 get the number of seat
-	 @return the number of seat
-	 */
 
 }

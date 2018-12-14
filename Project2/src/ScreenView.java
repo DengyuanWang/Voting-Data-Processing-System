@@ -1,5 +1,9 @@
-//login page
-//Author Yizhe Wang DengYuan Wang
+/** login page
+ * code for login page
+ *@author Yizhe Wang DengYuan Wang
+ *@version V1.0
+ */
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.*;

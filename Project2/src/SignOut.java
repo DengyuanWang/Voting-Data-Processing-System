@@ -1,5 +1,9 @@
-//signout page
-//Author Yizhe Wang DengYuan Wang
+/** signout page
+ * code for signout page
+ *@author Yizhe Wang DengYuan Wang
+ *@version V1.0
+ */
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

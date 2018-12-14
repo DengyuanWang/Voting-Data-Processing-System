@@ -1,3 +1,8 @@
+/** User Authority
+ * code for User Authority
+ *@author Yizhe Wang DengYuan Wang
+ *@version V1.0
+ */
 
 public class User {
 	public String Name;

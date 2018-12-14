@@ -1,3 +1,8 @@
+/** OPL_frame
+ *  data structure for OPL voting
+ *  @author Yizhe Wang DengYuan Wang
+ *  @version V1.0
+ */
 import java.util.HashMap;
 
 public class OPL_frame extends frames{

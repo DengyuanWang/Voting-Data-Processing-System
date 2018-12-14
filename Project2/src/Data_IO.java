@@ -16,6 +16,9 @@ public class Data_IO implements Serializable {
 	public int ballot_num = 0;//number of ballot
 	public Ballot[] data;//data from vote ballot
 	private BufferedReader bufferedReader;
+	/**
+	 class of Data I/O
+	 */
 	public Data_IO(){
 	    Path_in = "";//input file path
 		Path_out = "";//output file path
@@ -23,10 +26,11 @@ public class Data_IO implements Serializable {
 		ballot_num = 0;//number of ballot
 		data = null;
 	}
-	/**
-	 class of Data I/O
-	 */
 
+	/**
+	 load data
+	 @return status
+	 */
 	public boolean load_data() throws IOException
 	{
 		if(data!=null)
@@ -105,11 +109,12 @@ public class Data_IO implements Serializable {
 			return true;
 		}
 	}
+
 	/**
-	 load data
+	 save the result
+	 @param content string to be saved
 	 @return status
 	 */
-
 	public boolean save_result(String content)
 	{
 		if(Path_out=="") return false;
@@ -126,12 +131,12 @@ public class Data_IO implements Serializable {
 		}
 		return true;
 	}
+
 	/**
 	 save the result
 	 @param content string to be saved
 	 @return status
 	 */
-
 	public boolean save_result(String content,String path)
 	{
 		String fileName;
@@ -150,12 +155,12 @@ public class Data_IO implements Serializable {
 		}
 		return true;
 	}
+
 	/**
-	 save the result
-	 @param content string to be saved
+	 specify_path_input
+	 @param path specify_path_input
 	 @return status
 	 */
-
 	public boolean specify_path_in(String path)
 	{
 		if(path.length()<4) 
@@ -172,6 +177,12 @@ public class Data_IO implements Serializable {
 			return false;
 		}
 	}
+
+	/**
+	 specify_path_output
+	 @param path specify_path_output
+	 @return status
+	 */
 	public boolean specify_path_out(String path)
 	{
 		if(path.substring(path.length()-4)==".csv")

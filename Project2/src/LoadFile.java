@@ -1,5 +1,8 @@
-//load page
-//Author Yizhe Wang DengYuan Wang
+/** load page
+ * Code for load page
+ *@author Yizhe Wang DengYuan Wang
+ *@version V1.0
+ */
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;

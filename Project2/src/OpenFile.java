@@ -1,5 +1,8 @@
-//pick file
-//Author Yizhe Wang DengYuan Wang
+/** pick file
+ * Code for pick file
+ *@author Yizhe Wang DengYuan Wang
+ *@version V1.0
+ */
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -34,4 +37,8 @@ import javax.swing.filechooser.FileSystemView;
                 sb.append("No file was selected");
             }
         }
+        /**
+         open file
+         */
+
     }

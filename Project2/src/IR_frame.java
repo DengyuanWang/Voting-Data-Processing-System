@@ -1,4 +1,8 @@
-
+/** IR_frame
+ * data structure for IR voting
+ *@author Yizhe Wang DengYuan Wang
+ *@version V1.0
+ */
 public class IR_frame extends frames { 
 	public int[] candidates_rank;
 	public int[] candidates_votes;
