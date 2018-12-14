@@ -111,6 +111,9 @@ public class Voting_System {
         return true;        //TODO: return status
     }
 
+    /**
+     prepare IR voting data
+     */
     private void IR_Voting_prepare()
     {
         for(int j=0;j<numofballot;j++) {
@@ -125,7 +128,9 @@ public class Voting_System {
             }
         }
     }
-
+    /**
+     save IR voting data
+     */
     private void IR_Voting_saveres()
     {
         auditfile.IRVotingprocess=new IR_frame[NUMTERM];
@@ -134,7 +139,9 @@ public class Voting_System {
         auditfile.IRVInvalidBallots_size=IRinvalid.size();
         if(IRinvalid.size()>0)    IRinvalid.copyInto(auditfile.IRVInvalidBallots);
     }
-
+    /**
+     count ballot for IR voting data
+     */
     private void IR_Voting_count_ballot()
     {
         for (int j = 0; j < numofballot; j++) {
