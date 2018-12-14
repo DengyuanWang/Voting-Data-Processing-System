@@ -50,5 +50,6 @@ Party name of them:D D R
 ```
 
 "Votes num && Seats num" means the number of seats of each party in each round.
+
 CandidateWinSeatsName means the candidates who get the seats, and their party.
 
