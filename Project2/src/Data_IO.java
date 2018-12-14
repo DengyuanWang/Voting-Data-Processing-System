@@ -96,12 +96,6 @@ public class Data_IO implements Serializable {
 					}
 					Ballot tmp = new Ballot(type, seats_num, voter_index, candidatenum, candidates_in, vote);
 					data[voter_index] = tmp;
-					
-					//for(int i=0;i<candidatenum;i++)
-					//{
-					//	System.out.print(data[voter_index].get_vote(i)+"__");
-					//}
-					//System.out.print("\n");
 					voter_index++;
 					break;
 				}
