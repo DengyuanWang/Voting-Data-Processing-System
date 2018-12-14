@@ -65,94 +65,101 @@ public class Audit {
 	 */
 	public boolean display()
 	{
+		boolean ans=true;
 		if(new String("IR").equals(Type_of_Voting))
-		{
-			int frame_index=0;
-			while(true) {
-				if(frame_index==0)//first frame
+			ans=display_IR();
+		else if(new String("OPL").equals(Type_of_Voting))
+			ans=display_OPL();
+		return ans;
+	}
+	/**
+	 display audit info in IR
+	 @return status
+	 */
+	private boolean display_IR() {
+		if (new String("IR").equals(Type_of_Voting)) {
+			int frame_index = 0;
+			while (true) {
+				if (frame_index == 0)//first frame
 				{
 					audit_txt = "CandidatesName: ";
-					for(int i=0;i<Number_of_Candidates;i++)
-						audit_txt+=Candidates[i]+" ";
-					audit_txt+="\n";
-					audit_txt+="FirstChoice: ";
-					for(int i=0;i<Number_of_Candidates;i++)
-					{
+					for (int i = 0; i < Number_of_Candidates; i++)
+						audit_txt += Candidates[i] + " ";
+					audit_txt += "\n";
+					audit_txt += "FirstChoice: ";
+					for (int i = 0; i < Number_of_Candidates; i++) {
 						int k = IRVotingprocess[frame_index].Cand_Ballot[i][1];
-						audit_txt += " "+Integer.toString(k)+" ";
-					}	
-					audit_txt+="\n";
-				}
-				else
-				{
-					audit_txt+= "CandidatesName: ";
-					for(int i=0;i<Number_of_Candidates;i++)
-						audit_txt+=Candidates[i]+" ";
-					audit_txt+="\n";
-					audit_txt+=" "+Integer.toString(frame_index)+"Changes: ";
-					for(int i=0;i<Number_of_Candidates;i++)
-					{
-						int k = IRVotingprocess[frame_index].Cand_Ballot[i][1]-IRVotingprocess[frame_index-1].Cand_Ballot[i][1];
-						if(k<0)
+						audit_txt += " " + Integer.toString(k) + " ";
+					}
+					audit_txt += "\n";
+				} else {
+					audit_txt += "CandidatesName: ";
+					for (int i = 0; i < Number_of_Candidates; i++)
+						audit_txt += Candidates[i] + " ";
+					audit_txt += "\n";
+					audit_txt += " " + Integer.toString(frame_index) + "Changes: ";
+					for (int i = 0; i < Number_of_Candidates; i++) {
+						int k = IRVotingprocess[frame_index].Cand_Ballot[i][1] - IRVotingprocess[frame_index - 1].Cand_Ballot[i][1];
+						if (k < 0)
 							audit_txt += " X ";
 						else
-							audit_txt += " "+Integer.toString(k)+" ";
+							audit_txt += " " + Integer.toString(k) + " ";
 					}
-					audit_txt+="\n";
-					audit_txt+=" "+Integer.toString(frame_index)+"Choice: ";
-					for(int i=0;i<Number_of_Candidates;i++)
-					{
+					audit_txt += "\n";
+					audit_txt += " " + Integer.toString(frame_index) + "Choice: ";
+					for (int i = 0; i < Number_of_Candidates; i++) {
 						int k = IRVotingprocess[frame_index].Cand_Ballot[i][1];
-						audit_txt += " "+Integer.toString(k)+" ";
-					}	
-					audit_txt+="\n";
+						audit_txt += " " + Integer.toString(k) + " ";
+					}
+					audit_txt += "\n";
 				}
-				if(IRVotingprocess[frame_index].islastterm) 
-				{ 
-					
-					audit_txt += "Winner: " +Candidates[ IRVotingprocess[frame_index].Winner];
+				if (IRVotingprocess[frame_index].islastterm) {
+					audit_txt += "Winner: " + Candidates[IRVotingprocess[frame_index].Winner];
 					break;
 				}
 				frame_index++;
 			}
-			
-		}else if(new String("OPL").equals(Type_of_Voting)){
-			int frame_index=0;
+		}
+		return false;
+	}
+	/**
+	 display audit info in OPL
+	 @return status
+	 */
+	private boolean display_OPL() {
+		if (new String("OPL").equals(Type_of_Voting)) {
+			int frame_index = 0;
 			List<String> parties = new ArrayList<String>();
-			while(true) {
-				if(frame_index==0)//first frame
+			while (true) {
+				if (frame_index == 0)//first frame
 				{
 					audit_txt = "PartyName: ";
-					
-					for(String party: OPLVotingprocess[frame_index].PartySeats.keySet())
-					{
-						parties.add(party );
-						audit_txt += party+" ";
+
+					for (String party : OPLVotingprocess[frame_index].PartySeats.keySet()) {
+						parties.add(party);
+						audit_txt += party + " ";
 					}
 					audit_txt += "\n";
 				}
-				if(!OPLVotingprocess[frame_index].partyFinish)//
+				if (!OPLVotingprocess[frame_index].partyFinish)//
 				{
 					audit_txt += "Votes num:";
-					for(int i=0;i<parties.size();i++)
-						audit_txt += Integer.toString(OPLVotingprocess[frame_index].PartyVotes.get(parties.get(i)))+" ";
+					for (int i = 0; i < parties.size(); i++)
+						audit_txt += Integer.toString(OPLVotingprocess[frame_index].PartyVotes.get(parties.get(i))) + " ";
 					audit_txt += "\nSeats num:";
-					for(int i=0;i<parties.size();i++)
-						audit_txt += Integer.toString(OPLVotingprocess[frame_index].PartySeats.get(parties.get(i)))+" ";
+					for (int i = 0; i < parties.size(); i++)
+						audit_txt += Integer.toString(OPLVotingprocess[frame_index].PartySeats.get(parties.get(i))) + " ";
 					audit_txt += "\n";
-				}
-				else
-				{
+				} else {
 					audit_txt += "CandidateWinSeatsName: ";
 					List<String> candiWseats = new ArrayList<String>();
-					for(String candi: OPLVotingprocess[frame_index].CandSeats.keySet())
-					{
-						candiWseats.add(candi );
-						audit_txt += candi+" ";
+					for (String candi : OPLVotingprocess[frame_index].CandSeats.keySet()) {
+						candiWseats.add(candi);
+						audit_txt += candi + " ";
 					}
 					audit_txt += "\nParty name of them:";
-					for(int i=0;i<candiWseats.size();i++)
-						audit_txt += OPLVotingprocess[frame_index].CandParty.get(candiWseats.get(i))+" ";
+					for (int i = 0; i < candiWseats.size(); i++)
+						audit_txt += OPLVotingprocess[frame_index].CandParty.get(candiWseats.get(i)) + " ";
 					audit_txt += "\n";
 					break;
 				}

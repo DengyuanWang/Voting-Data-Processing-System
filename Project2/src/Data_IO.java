@@ -32,30 +32,14 @@ public class Data_IO implements Serializable {
 	 @return status
 	 */
 	public boolean load_data() throws IOException
-	{
-		if(data!=null)
-		{
-			data = null;
-			System.gc();
-		}
-		String type="";
-		int voter_index = 0;
-		int candidatenum = 0;
-		int vote_num = 0;
-		int seats_num = 0;
-		String[] candidates_in = null;
-		int[] vote = null;
-
-		if(Path_in=="")
-			return false;
-		else {
-			File file = new File(Path_in); 
-			String st; 
-			int linecount = 0;
+	{   if(data!=null)	{	data = null;    System.gc();	}
+		String type="", st="";		int voter_index = 0, candidatenum = 0, vote_num = 0, seats_num = 0, linecount = 0;
+		String[] candidates_in = null;    int[] vote = null;
+		if(Path_in=="") 	return false;
+		else {	File file = new File(Path_in);
 			bufferedReader = new BufferedReader(new FileReader(file));
 			while ((st = bufferedReader.readLine()) != null) 
-			{//  System.out.println(st); 
-				linecount++;
+			{   linecount++;
 				switch(linecount) {
 				case 1://vote type
 					type = st;
@@ -72,31 +56,24 @@ public class Data_IO implements Serializable {
 					else seats_num = Integer.parseInt(st);//OPL
 					break;
 				case 5://maybe vote ballots or seats
-					if(!new String("IR").equals(type))//OPL
-					{
+					if(!new String("IR").equals(type)) {//OPL
 						vote_num = Integer.parseInt(st);
 						break;
 					}//continue for IR
 				default://vote ballots
 					String[] tmpst = st.split(",");
-					if(data == null)
-					{
+					if(data == null) {
 						data = new Ballot[vote_num];
 						ballot_num = vote_num;
 					}
 					if(vote == null)
 						vote = new int[candidatenum];
-					for(int i=0;i<candidatenum;i++)
-					{
-						if(tmpst.length<=i||new String("").equals(tmpst[i]))
-							vote[i] = 0;
-						else {
-							vote[i] = Integer.parseInt(tmpst[i]);
-						}
+					for(int i=0;i<candidatenum;i++)	{
+						if(tmpst.length<=i||new String("").equals(tmpst[i]))		vote[i] = 0;
+						else 	vote[i] = Integer.parseInt(tmpst[i]);
 					}
 					Ballot tmp = new Ballot(type, seats_num, voter_index, candidatenum, candidates_in, vote);
-					data[voter_index] = tmp;
-					voter_index++;
+					data[voter_index] = tmp;		voter_index++;
 					break;
 				}
 			}
